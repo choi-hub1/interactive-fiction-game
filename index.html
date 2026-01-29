@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Interactive Fiction: Sun Wukong and the Journey to the West</title>
+<style>
+body {
+font-family: "Microsoft YaHei", sans-serif;
+background-color: #f5f2e9;
+color: #333;
+margin: 0;
+padding: 20px;
+line-height: 1.7;
+}
+.container {
+max-width: 800px;
+margin: auto;
+background: white;
+border-radius: 12px;
+box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+padding: 25px;
+margin-top: 20px;
+}
+h1 {
+text-align: center;
+color: #d46a6a;
+font-size: 2.2em;
+margin-bottom: 10px;
+}
+h2 {
+color: #5c3317;
+border-bottom: 2px solid #d46a6a;
+padding-bottom: 5px;
+}
+p {
+text-indent: 2em;
+margin: 15px 0;
+}
+.choice {
+margin: 20px 0;
+}
+.choice button {
+display: block;
+width: 100%;
+padding: 12px;
+margin: 8px 0;
+background-color: #f0d9b5;
+border: 2px solid #d46a6a;
+border-radius: 8px;
+font-size: 1.1em;
+cursor: pointer;
+transition: all 0.3s;
+}
+.choice button:hover {
+background-color: #e0c2a0;
+}
+.choice button:active {
+transform: scale(0.98);
+}
+.scene {
+display: none;
+margin: 20px 0;
+padding: 15px;
+background-color: #fff8f0;
+border-left: 5px solid #d46a6a;
+}
+.scene.active {
+display: block;
+}
+.ending {
+margin: 30px 0;
+padding: 20px;
+background-color: #e8f5e8;
+border-radius: 10px;
+text-align: center;
+font-size: 1.2em;
+color: #2e7d32;
+font-weight: bold;
+}
+.restart {
+margin-top: 20px;
+text-align: center;
+}
+.restart button {
+background-color: #4CAF50;
+color: white;
+border: none;
+padding: 10px 20px;
+border-radius: 6px;
+cursor: pointer;
+font-size: 1em;
+}
+.restart button:hover {
+background-color: #45a049;
+}
+.progress-bar {
+width: 100%;
+height: 20px;
+background-color: #e0e0e0;
+border-radius: 10px;
+margin: 10px 0;
+overflow: hidden;
+}
+.progress {
+height: 100%;
+background-color: #d46a6a;
+width: 0%;
+transition: width 0.5s;
+}
+.note {
+font-size: 0.9em;
+color: #666;
+text-align: center;
+margin: 10px 0;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>Interactive Fiction: Sun Wukong and the Journey to the West</h1>
+<p class="note">Welcome to the world of Journey to the West! You will play as Sun Wukong (the Monkey King), helping Tang Sanzang go west to get sacred scriptures. Make choices along the way. Each choice changes your story and final ending.</p>
+
+<div class="progress-bar">
+<div id="progress" class="progress"></div>
+</div>
+
+<!-- Scene 1 -->
+<div id="scene1" class="scene active">
+<h2>Scene 1: Freeing the Sun Wukong</h2>
+<p>Tang Sanzang travels through a mountain called Five-Finger Mountain. He sees a monkey trapped under a big stone for 500 years. Tang Sanzang says a prayer, and a magic staff flies out. The monkey stands up and bows: “Master, I want to protect you on your journey!”</p>
+<p>The monkey is Sun Wukong, once a divine official in Heavenly Court. Now he is free. They starts the jounery to the west.
+<p> However, a monster named Black Wind Demon has stolen the Buddha’s robe from a temple.</p>
+<div class="choice">
+<button onclick="choose('scene1', 'scene2')">Wukong goes alone to take back the robe</button>
+<button onclick="choose('scene1', 'scene3')">Take Pigsy and Sandy with Wukong</button>
+</div>
+</div>
+
+<!-- Scene 2 -->
+<div id="scene2" class="scene">
+<h2>Scene 2: Fighting Alone</h2>
+<p>Wukong goes to the cave of Black Wind Demon. They fight three times, but the monster is too strong. Wukong runs away to his home, Flower-Fruit Mountain.</p>
+<p>But the mountain is surrounded by heavenly soldiers. Wukong must choose what to do next.</p>
+<div class="choice">
+<button onclick="choose('scene2', 'scene4')">Go back to ask Tang Sanzang for help from Guanyin</button>
+<button onclick="choose('scene2', 'scene5')">Break through the soldiers and bring monkeys to fight</button>
+</div>
+</div>
+
+<!-- Scene 3 -->
+<div id="scene3" class="scene">
+<h2>Scene 3: Teamwork</h2>
+<p>Tang Sanzang leads Pigsy and Sandy to attack the cave at night. Pigsy uses his rake to open the path. Sandy guards behind. Wukong rushes into the cave.</p>
+<p>But the demon has set a magic trap. All three are caught in a confusing fog and cannot escape.</p>
+<div class="choice">
+<button onclick="choose('scene3', 'scene6')">Let Wukong use a spell to freeze the trap</button>
+<button onclick="choose('scene3', 'scene7')">Ask Guanyin to send holy water to break the spell</button>
+</div>
+</div>
+
+<!-- Scene 4 -->
+<div id="scene4" class="scene">
+<h2>Scene 4: Help from the Goddess</h2>
+<p>Guanyin arrives with a bottle of holy water and teaches Wukong how to break the trap. He succeeds and gets back the robe.</p>
+<p>But the Black Wind Demon escapes and joins a stronger monster — the Yellow Robed Demon.</p>
+<div class="choice">
+<button onclick="choose('scene4', 'scene8')">Chase the demon to his lair</button>
+<button onclick="choose('scene4', 'scene9')">Return to China and prepare better</button>
+</div>
+</div>
+
+<!-- Scene 5 -->
+<div id="scene5" class="scene">
+<h2>Scene 5: Monkey Army</h2>
+<p>Wukong gathers 100,000 monkeys and attacks the cave. The demons run away. The Black Wind Demon is captured.</p>
+<p>But Wukong broke the rules of heaven. The Jade Emperor orders him to return his magic staff and face judgment.</p>
+<div class="choice">
+<button onclick="choose('scene5', 'scene10')">Refuse to obey and keep going</button>
+<button onclick="choose('scene5', 'scene11')">Go to heaven and accept punishment</button>
+</div>
+</div>
+
+<!-- Scene 6 -->
+<div id="scene6" class="scene">
+<h2>Scene 6: Healing and Rest</h2>
+<p>Wukong uses a spell to stop the trap. The team escapes, but he is hurt badly.</p>
+<p>Sandy wants to rest for three days. But Pigsy wants to eat meat and drink wine.</p>
+<div class="choice">
+<button onclick="choose('scene6', 'scene12')">Say no to food and rest properly</button>
+<button onclick="choose('scene6', 'scene13')">Let them enjoy the moment</button>
+</div>
+</div>
+
+<!-- Scene 7 -->
+<div id="scene7" class="scene">
+<h2>Scene 7: Holy Water</h2>
+<p>Guanyin pours holy water. The magic trap disappears. The team is safe and gets the robe back.</p>
+<p>But the Black Wind Demon has escaped to the west and joined three powerful monsters at Lion Camel Mountain.</p>
+<div class="choice">
+<button onclick="choose('scene7', 'scene14')">Follow immediately — don’t let him escape</button>
+<button onclick="choose('scene7', 'scene15')">Tell the heavens and ask for army help</button>
+</div>
+</div>
+
+<!-- Scene 8 -->
+<div id="scene8" class="scene">
+<h2>Scene 8: Attack the Monster Lair</h2>
+<p>The team enters Lion Camel Mountain. Three monsters attack. Wukong fights hard but is caught and locked in a dungeon.</p>
+<p>Tang Sanzang is held prisoner. Pigsy and Sandy escape and must decide what to do.</p>
+<div class="choice">
+<button onclick="choose('scene8', 'scene16')">Go back to China for help</button>
+<button onclick="choose('scene8', 'scene17')">Enter the dungeon and save the master</button>
+</div>
+</div>
+
+<!-- Scene 9 -->
+<div id="scene9" class="scene">
+<h2>Scene 9: Prepare the Team</h2>
+<p>They return to China. Tang Sanzang asks the emperor to send soldiers. An army comes, but they are lazy and cause trouble.</p>
+<p>Wukong says: “We are monks on a holy mission. We should not depend on soldiers.”</p>
+<div class="choice">
+<button onclick="choose('scene9', 'scene18')">Leave the army and travel light</button>
+<button onclick="choose('scene9', 'scene19')">Keep the army and move in groups</button>
+</div>
+</div>
+
+<!-- Scene 10 -->
+<div id="scene10" class="scene">
+<h2>Scene 10: Defy Heaven</h2>
+<p>Wukong refuses to obey heaven. He continues with Tang Sanzang. Heaven sends thunder gods to stop them.</p>
+<p>To protect his master, Wukong breaks his golden headband and becomes a normal person.</p>
+<div class="ending">
+<h3>Ending 1: Hero Falls</h3>
+<p>Wukong dies saving the mission. Tang Sanzang reaches the West and gets the scriptures. But without Wukong, the books are damaged. The true teachings are lost.</p>
+<p><strong>Type: Tragic Sacrifice</strong></p>
+</div>
+<div class="restart">
+<button onclick="restart()">Start Again</button>
+</div>
+</div>
+
+<!-- Scene 11 -->
+<div id="scene11" class="scene">
+<h2>Scene 10: Obey Heaven</h2>
+<p>Wukong returns to heaven and gives back his staff. He loses freedom and cannot protect the master anymore.</p>
+<p>Tang Sanzang travels alone and faces many dangers. He never reaches the West.</p>
+<div class="ending">
+<h3>Ending 2: Mission Failed</h3>
+<p>Without Wukong, the journey ends halfway.Tang Sanzang dies in the desert. The scriptures are lost. The world stays dark.</p>
+<p><strong>Type: Failure & Regret</strong></p>
+</div>
+<div class="restart">
+<button onclick="restart()">Start Again</button>
+</div>
+</div>
+
+<!-- Scene 12 -->
+<div id="scene12" class="scene">
+<h2>Scene 10: Keep Going</h2>
+<p>The team rests and heals. Wukong gets better. They continue their journey, fighting monsters and helping people.</p>
+<p>Finally, they reach the Western Heaven. Buddha gives them the true scriptures. All four become enlightened.</p>
+<div class="ending">
+<h3>Ending 3: Perfect Ending</h3>
+<p>They stay strong and never give up. After great hardship, they succeed. Tang Sanzang becomes a Buddha. Wukong becomes the Victorious Fighting Buddha.</p>
+<p><strong>Type: Success & Enlightenment</strong></p>
+</div>
+<div class="restart">
+<button onclick="restart()">Start Again</button>
+</div>
+</div>
+
+<!-- Scene 13 -->
+<div id="scene13" class="scene">
+<h2>Scene 10: Enjoy Life</h2>
+<p>The team drinks wine and eats meat. They relax and forget danger.</p>
+<p>At night, monsters attack and kidnap Tang Sanzang. Wukong wakes up too late.</p>
+<div class="ending">
+<h3>Ending 4: Lost in Pleasure</h3>
+<p>Because of laziness, the mission fails. Master Tang is killed. The scriptures are burned. The team is punished forever.</p>
+<p><strong>Type: Failure & Destruction</strong></p>
+</div>
+<div class="restart">
+<button onclick="restart()">Start Again</button>
+</div>
+</div>
+
+<!-- Scene 14 -->
+<div id="scene14" class="scene">
+<h2>Scene 10: Brave Battle</h2>
+<p>The team attacks Lion Camel Mountain. Wukong fights the three monsters and wins. But he is badly hurt.</p>
+<p>Before dying, he tells Pigsy: “If I die, you must protect the master.”</p>
+<div class="ending">
+<h3>Ending 5: Hero Dies</h3>
+<p>Wukong dies, but the journey continues. Pigsy protects the master and finishes the mission. Wukong becomes a guardian spirit.</p>
+<p><strong>Type: Brave Legacy</strong></p>
+</div>
+<div class="restart">
+<button onclick="restart()">Start Again</button>
+</div>
+</div>
+
+<!-- Scene 15 -->
+<div id="scene15" class="scene">
+<h2>Scene 10: Army Protection</h2>
+<p>Heaven sends 100,000 soldiers to protect the team. Monsters fear them and stay away.</p>
+<p>But the soldiers are proud and hurt innocent people. The people hate them.</p>
+<div class="ending">
+<h3>Ending 6: Power Trap</h3>
+<p>They reach the West safely, but the scriptures are polluted by power. Master Tang becomes a “heavenly monk” but cannot help others.</p>
+<p><strong>Type: Compromise & Corruption</strong></p>
+</div>
+<div class="restart">
+<button onclick="restart()">Start Again</button>
+</div>
+</div>
+
+<!-- Scene 16 -->
+<div id="scene16" class="scene">
+<h2>Scene 10: Smart Rescue</h2>
+<p>Pigsy and Sandy sneak into the dungeon. They steal the key and save Tang Sanzang. Wukong wakes up and defeats the monsters.</p>
+<p>The team reunites and continues. They finally reach the West.</p>
+<div class="ending">
+<h3>Ending 7: Victory by Wisdom</h3>
+<p>They win not by strength, but by cleverness and teamwork. The journey shines with human kindness. True Buddhism spreads.</p>
+<p><strong>Type: Wisdom & Light</strong></p>
+</div>
+<div class="restart">
+<button onclick="restart()">Start Again</button>
+</div>
+</div>
+
+<!-- Scene 17 -->
+<div id="scene17" class="scene">
+<h2>Scene 10: Fight to the End</h2>
+<p>Pigsy and Sandy rush into the dungeon but are trapped. Wukong wakes up and fights all three monsters alone.</p>
+<p>He wins, but Pigsy is hurt and Sandy disappears.</p>
+<div class="ending">
+<h3>Ending 8: Victory with Pain</h3>
+<p>The mission is complete, but friends are lost. Tang Sanzang is sad. The scriptures are written in blood. The journey is full of sorrow.</p>
+<p><strong>Type: Sad Victory</strong></p>
+</div>
+<div class="restart">
+<button onclick="restart()">Start Again</button>
+</div>
+</div>
+
+<!-- Scene 18 -->
+<div id="scene18" class="scene">
+<h2>Scene 10: Travel Light</h2>
+<p>They leave the army and travel only with the four monks. They face dangers, but trust each other and survive.</p>
+<p>They reach the West and meet Buddha. They learn the truth of life.</p>
+<div class="ending">
+<h3>Ending 9: Pure Journey</h3>
+<p>They rely only on belief and courage. The journey becomes a spiritual trip. All learn “no self.” True Buddhism spreads to the world.</p>
+<p><strong>Type: Awakening & Freedom</strong></p>
+</div>
+<div class="restart">
+<button onclick="restart()">Start Again</button>
+</div>
+</div>
+
+<!-- Scene 19 -->
+<div id="scene19" class="scene">
+<h2>Scene 10: Split Army</h2>
+<p>The army moves in groups. But they argue and fight among themselves. Monsters attack when they are weak.</p>
+<p>Tang Sanzang is kidnapped. Wukong kills traitors, but the scriptures are lost.</p>
+<div class="ending">
+<h3>Ending 10: Broken Team</h3>
+<p>Power struggles destroy the team. The mission fails completely. Tang Sanzang is imprisoned. The scriptures are gone. People say: “If hearts are not united, how can we reach enlightenment?”</p>
+<p><strong>Type: Chaos & Destruction</strong></p>
+</div>
+<div class="restart">
+<button onclick="restart()">Start Again</button>
+</div>
+</div>
+
+<script>
+let choiceCount = 0;
+const totalChoices = 10;
+
+function choose(fromScene, toScene) {
+const from = document.getElementById(fromScene);
+const to = document.getElementById(toScene);
+
+if (from && to) {
+from.classList.remove('active');
+to.classList.add('active');
+
+choiceCount++;
+updateProgress();
+
+// If 10 choices made, show ending
+if (choiceCount >= totalChoices) {
+document.querySelectorAll('.ending').forEach(el => el.style.display = 'block');
+}
+}
+}
+
+function updateProgress() {
+const progress = document.getElementById('progress');
+const percent = (choiceCount / totalChoices) * 100;
+progress.style.width = percent + '%';
+}
+
+function restart() {
+choiceCount = 0;
+updateProgress();
+
+// Hide all scenes
+document.querySelectorAll('.scene').forEach(scene => {
+scene.classList.remove('active');
+});
+
+// Show first scene
+document.getElementById('scene1').classList.add('active');
+
+// Hide all endings
+document.querySelectorAll('.ending').forEach(el => {
+el.style.display = 'none';
+});
+}
+
+// Start with progress bar at 0%
+updateProgress();
+</script>
+</div>
+
+</body>
+</html>
